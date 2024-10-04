@@ -2,7 +2,26 @@ repositories {
     mavenCentral()
 }
 
+plugins {
+    id("com.google.firebase.crashlytics")
+
+}
+
 dependencies {
     implementation 'com.google.firebase:firebase-installations:17.2.0'
     implementation 'com.google.android.gms:play-services-base:18.2.0'
+    // https://firebase.google.com/docs/crashlytics/ndk-reports#add-sdk
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:19.0.3'
+}
+
+
+android {
+     buildTypes { 
+         release { 
+             firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+            }
+         }
+     } 
+     
 }
